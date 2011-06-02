@@ -1,0 +1,7 @@
+content   seetabs                 chrome/content/
+skin      seetabs   classic/1.0   chrome/skin/
+locale    seetabs   en-US         chrome/locale/en-US/
+
+
+overlay   chrome://browser/content/browser.xul   chrome://seetabs/content/ff-overlay.xul
+style chrome://global/content/customizeToolbar.xul chrome://seetabs/skin/overlay.css

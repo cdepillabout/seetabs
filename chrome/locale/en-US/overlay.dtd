@@ -1,0 +1,8 @@
+<!ENTITY seetabs.label "Your localized menuitem">
+<!ENTITY seetabsContext.label "Your Menuitem">
+<!ENTITY seetabsContext.accesskey "Y">
+<!ENTITY seetabsToolbarButton.label "Your Toolbar Button">
+<!ENTITY seetabsToolbarButton.tooltip "This is your toolbar button!">
+<!ENTITY seetabsSidebar.label "Your Sidebar">
+<!ENTITY seetabsToolbar.name  "example">
+<!ENTITY seetabsToolbar.label "This is an example toolbar. You can hide it under View &gt; toolbars &gt; &tabshareToolbar.name;">
