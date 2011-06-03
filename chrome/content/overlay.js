@@ -10,6 +10,7 @@ var seetabs = {
                                   .getService(Components.interfaces.nsIPromptService);
     promptService.alert(window, this.strings.getString("helloMessageTitle"),
                                 this.strings.getString("helloMessage"));
+    promptService.alert(window, "Title what!!", "Body what!!");
   },
 
   onToolbarButtonCommand: function(e) {

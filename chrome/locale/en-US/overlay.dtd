@@ -5,4 +5,4 @@
 <!ENTITY seetabsToolbarButton.tooltip "This is your toolbar button!">
 <!ENTITY seetabsSidebar.label "Your Sidebar">
 <!ENTITY seetabsToolbar.name  "example">
-<!ENTITY seetabsToolbar.label "This is an example toolbar. You can hide it under View &gt; toolbars &gt; &tabshareToolbar.name;">
+<!ENTITY seetabsToolbar.label "This is an example toolbar. You can hide it under View &gt; toolbars &gt; &seetabsToolbar.name;">

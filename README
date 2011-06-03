@@ -1,0 +1,16 @@
+
+In order to start developing on this, create a link in your 
+~/.mozilla/firefox/PROFILENAME/extensions/ directory to this repo.  The link 
+name should be the value of <em:id> in install.rdf.  So, it should be something 
+like this:
+
+~/.mozilla/firefox/PROFILENAME/extensions/cdep.illabout@gmail.com -> 
+/some/path/to/this/git/repo/
+
+
+Some good links for developing addons:
+http://blog.mozilla.com/addons/2009/01/28/how-to-develop-a-firefox-extension/
+https://developer.mozilla.org/en/firefox_addons_dev_guide
+https://developer.mozilla.org/en/Extensions
+https://developer.mozilla.org/en/Building_an_Extension
+https://developer.mozilla.org/en/XUL_School
