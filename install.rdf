@@ -9,13 +9,12 @@
 		<em:contributor></em:contributor>
 		<em:description>Share tabs between different browsers.</em:description>
 		<em:homepageURL>http://seetabs.com</em:optionsURL>
-		<em:aboutURL>chrome://seetabs/content/about.xul</em:aboutURL>
 		<em:optionsURL>chrome://seetabs/content/options.xul</em:optionsURL>
 		<em:targetApplication>
 			<Description>
 				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id> <!-- Firefox -->
-				<em:minVersion>4.0b1</em:minVersion>
-				<em:maxVersion>7.0a1</em:maxVersion>
+				<em:minVersion>3.6</em:minVersion>
+				<em:maxVersion>7.*</em:maxVersion>
 			</Description>
 		</em:targetApplication>
 	</Description>
