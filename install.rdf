@@ -8,7 +8,7 @@
 		<em:creator>Dennis Gosnell</em:creator>
 		<em:contributor></em:contributor>
 		<em:description>Share tabs between different browsers.</em:description>
-		<em:homepageURL>http://seetabs.com</em:optionsURL>
+		<em:homepageURL>http://seetabs.com</em:homepageURL>
 		<em:optionsURL>chrome://seetabs/content/options.xul</em:optionsURL>
 		<em:targetApplication>
 			<Description>

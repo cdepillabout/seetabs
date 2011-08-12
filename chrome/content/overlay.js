@@ -108,7 +108,12 @@ var seetabs = {
 		}
 
 		if (gBrowser) {
-			gBrowser.addEventListener("DOMContentLoaded", this.onPageLoad, false);
+			//gBrowser.addEventListener("DOMContentLoaded", this.onPageLoad, false);
+
+			var container = gBrowser.tabContainer;
+			container.addEventListener("TabOpen", this.onTabOpen, false);
+			container.addEventListener("TabMove", this.onTabMove, false);
+			container.addEventListener("TabClose", this.onTabClose, false);
 		}
 
 		this.initialized = true;
@@ -156,11 +161,47 @@ var seetabs = {
 		if (win != win.top) return; //only top window.
 		if (win.frameElement) return; // skip iframes/frames
 
+		var tabindex = gBrowser.getBrowserIndexForDocument(doc);
+
+		seetabs.debuglala(doc.location.href, doc.title, ntutils.getdesc(doc), 
+						  seetabs.cookie, tabindex, "onPageLoad");
+		return;
+
 		// firefox will open file://, chrome://, and about: pages, but we don't 
 		// want to save those in our history.  These pages also won't have a description.
 		if (doc.location.protocol == "http:" || doc.location.protocol == "https:") {
 			seetabs.recordVisit(doc.location.href, doc.title, ntutils.getdesc(doc), seetabs.cookie);
 		}
+	},
+
+	onTabOpen: function(aEvent) {
+		seetabs.onTabDebug(aEvent, "onTabOpen");
+	},
+
+	onTabMove: function(aEvent) {
+		seetabs.onTabDebug(aEvent, "onTabMove");
+	},
+
+	onTabClose: function(aEvent) {
+		seetabs.onTabDebug(aEvent, "onTabClose");
+	},
+
+	onTabDebug: function(aEvent, from) {
+		var tab = aEvent.target;
+		var browser = gBrowser.getBrowserForTab(tab);
+		var doc = browser.contentDocument;
+		var win = doc.defaultView; 
+
+		//if (doc.nodeName != "#document") return; // only documents
+		//if (win != win.top) return; //only top window.
+		//if (win.frameElement) return; // skip iframes/frames
+
+		var tabindex = gBrowser.getBrowserIndexForDocument(doc);
+		//var tabindex = tab.tabIndex;
+
+		seetabs.debuglala(doc.location.href, doc.title, ntutils.getdesc(doc), 
+						  seetabs.cookie, tabindex, from);
+		return;
 	},
 
 	recordVisit: function(url, title, description, cookie) {
@@ -181,6 +222,11 @@ var seetabs = {
 			true);
 		req.onload = null;
 		req.send(null);
+	},
+
+	debuglala: function(url, title, description, cookie, tabindex, from) {
+		alert("debug: " + url + ", title: " + title + ", description: " + description +
+			  ", tabindex: " + tabindex + ", from: " + from);
 	},
 };
 
