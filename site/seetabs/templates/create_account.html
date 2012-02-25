@@ -1,0 +1,18 @@
+
+{% extends "layout.html" %}
+
+{% block title %}Create Account{% endblock %}
+
+{% block body %}
+<h2>BYE FROM CREATE ACCOUNT</h2>
+<div class=create_account>
+    <form method="POST" action="{{ url_for('create_account') }}">
+        {{ create_account_form.hidden_tag() }}
+        {{ create_account_form.ca_username.label }}: {{ create_account_form.ca_username }}
+        {{ create_account_form.ca_password.label }}: {{ create_account_form.ca_password }}
+        {{ create_account_form.ca_email.label }}: {{ create_account_form.ca_email }}
+        {{ create_account_form.ca_submit }}
+    </form>
+</div>
+{% endblock %}
+

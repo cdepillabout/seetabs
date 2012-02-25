@@ -1,0 +1,4 @@
+
+DEBUG=False
+SECRET_KEY='some long key here'
+SQLALCHEMY_DATABASE_URI='sqlite:////some/path/to/a/sqlite3.db'
