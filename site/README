@@ -1,0 +1,8 @@
+
+To run server (with debugging):
+
+$ ./runserver.py -d
+
+To create the database:
+
+$ ./runserver.py --create-db

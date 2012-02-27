@@ -1,7 +1,7 @@
 from . import app, db
 from flask import render_template, request, flash, session, g, redirect, url_for
-from .models import User
-from forms import LoginForm, CreateAccountForm
+from .models import User, Tab
+from forms import LoginForm, CreateAccountForm, SubmitTabForm
 
 @app.before_request
 def lookup_current_user():
@@ -59,6 +59,23 @@ def create_account():
 
     return render_template('create_account.html', create_account_form=form)
 
+@app.route('/submit_tab', methods=['GET', 'POST'])
+def submit_tab():
+    form = SubmitTabForm(request.form)
+    if request.method == 'POST':
+        if form.validate():
+            if g.user is not None:
+                new_tab = Tab(g.user.id, form.st_url.data)
+                db.session.add(new_tab)
+                db.session.commit()
+                flash('Added URL %s' % form.st_url.data)
+            else:
+                flash(u"Login to submit tabs.", 'error')
+        else:
+            flash_form_errors(form)
+
+    return render_template('submit_tab.html', submit_tab_form=form)
+
 def redirect_url():
     return request.args.get('next') or \
            request.referrer or \
@@ -75,4 +92,5 @@ def logout():
 
 @app.context_processor
 def inject_login_form():
-    return dict(login_form=LoginForm())
+    form = LoginForm()
+    return dict(login_form=form)

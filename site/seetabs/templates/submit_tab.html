@@ -1,0 +1,17 @@
+
+{% extends "layout.html" %}
+
+{% block title %}Submit Tab{% endblock %}
+
+{% block body %}
+<h2>BOOOOB Submit Tab</h2>
+<div class=submit_tab>
+    <form method="POST" action="{{ url_for('submit_tab') }}">
+        {{ submit_tab_form.hidden_tag() }}
+        {{ submit_tab_form.st_url.label }}: {{submit_tab_form.st_url }}
+        {{ submit_tab_form.st_submit }}
+    </form>
+</div>
+{% endblock %}
+
+

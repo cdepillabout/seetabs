@@ -66,7 +66,6 @@ class CreateAccountForm(Form):
             [validators.Length(max=120), validators.Email(), validators.Optional()])
     ca_submit = SubmitField('Login')
 
-
 class ChangePasswordForm(LoginForm):
     password = PasswordField('Old Password',
             [validators.Length(min=6, max=100), validators.Required()])
@@ -75,4 +74,7 @@ class ChangePasswordForm(LoginForm):
     confirm_password = PasswordField('New Password',
             [validators.Length(min=6, max=100), validators.Required()])
 
-
+class SubmitTabForm(Form):
+    st_url = TextField('url',
+            [validators.Length(min=4, max=25), validators.URL(), validators.Required()])
+    st_submit = SubmitField('Submit')
