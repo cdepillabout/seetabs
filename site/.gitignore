@@ -2,4 +2,4 @@
 *.py[co]
 
 /seetabs/settings.py
-/fitto.db
+/seetabs.db
