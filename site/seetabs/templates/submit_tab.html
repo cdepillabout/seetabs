@@ -9,8 +9,21 @@
     <form method="POST" action="{{ url_for('submit_tab') }}">
         {{ submit_tab_form.hidden_tag() }}
         {{ submit_tab_form.st_url.label }}: {{submit_tab_form.st_url }}
+        {{ submit_tab_form.st_browser_id.label }}: {{submit_tab_form.st_browser_id }}
         {{ submit_tab_form.st_submit }}
     </form>
+</div>
+
+<div class=tab_list>
+    {% if tabs %}
+    <div class=tabs>
+        {% for tab in tabs %}
+        {{ tab.id }}. ({{ tab.browser_id }}) 
+        <a href='{{ tab.url }}'>{{ tab.url }}</a>
+        <a href="{{ url_for('delete_tab', browser_id=tab.browser_id) }}">delete</a></br>
+        {% endfor %}
+    </div>
+    {% endif %}
 </div>
 {% endblock %}
 

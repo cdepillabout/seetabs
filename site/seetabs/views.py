@@ -62,19 +62,41 @@ def create_account():
 @app.route('/submit_tab', methods=['GET', 'POST'])
 def submit_tab():
     form = SubmitTabForm(request.form)
+    tabs = None
+
     if request.method == 'POST':
         if form.validate():
             if g.user is not None:
-                new_tab = Tab(g.user.id, form.st_url.data)
-                db.session.add(new_tab)
+                old_tab = g.user.tabs.filter_by(browser_id=form.st_browser_id.data).first()
+                if old_tab:
+                    old_tab.set_url(form.st_url.data)
+                    flash('Updated URL (%s) %s' % (old_tab.browser_id, old_tab.url))
+                else:
+                    new_tab = Tab(g.user.id, form.st_browser_id.data, form.st_url.data)
+                    db.session.add(new_tab)
+                    flash('Added URL (%s) %s' % (new_tab.browser_id, new_tab.url))
                 db.session.commit()
-                flash('Added URL %s' % form.st_url.data)
+                return redirect(url_for('submit_tab'))
             else:
                 flash(u"Login to submit tabs.", 'error')
         else:
             flash_form_errors(form)
 
-    return render_template('submit_tab.html', submit_tab_form=form)
+    if g.user is not None:
+        tabs = g.user.tabs.all()
+
+    return render_template('submit_tab.html', submit_tab_form=form, tabs=tabs)
+
+@app.route('/delete_tab', methods=['GET'])
+def delete_tab():
+    browser_id = request.args.get('browser_id')
+    if g.user and browser_id:
+        tab = g.user.tabs.filter_by(browser_id=browser_id).first()
+        if tab:
+            db.session.delete(tab)
+            db.session.commit()
+
+    return redirect(url_for('submit_tab'))
 
 def redirect_url():
     return request.args.get('next') or \

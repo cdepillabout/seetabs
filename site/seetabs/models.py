@@ -31,11 +31,16 @@ class User(db.Model):
 class Tab(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    browser_id = db.Column(db.Integer)
     url = db.Column(db.Text)
 
-    def __init__(self, user_id, url):
+    def __init__(self, user_id, browser_id, url):
         self.user_id = user_id
+        self.browser_id = browser_id
         self.url = url
 
     def __repr__(self):
         return '<Tab %r (%r)>' % (self.usrl, self.user.username)
+
+    def set_url(self, url):
+        self.url = url

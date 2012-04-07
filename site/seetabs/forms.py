@@ -1,7 +1,7 @@
 from urlparse import urlparse, urljoin
 from flask import request, url_for, redirect
 from flaskext.wtf import Form, TextField, HiddenField, \
-        PasswordField, SubmitField, validators
+        PasswordField, SubmitField, validators, IntegerField
 
 from .models import User
 
@@ -75,6 +75,8 @@ class ChangePasswordForm(LoginForm):
             [validators.Length(min=6, max=100), validators.Required()])
 
 class SubmitTabForm(Form):
+    st_browser_id = IntegerField('browser_id',
+            [validators.NumberRange(min=0), validators.Required()])
     st_url = TextField('url',
             [validators.Length(min=4, max=25), validators.URL(), validators.Required()])
     st_submit = SubmitField('Submit')
